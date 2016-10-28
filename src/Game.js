@@ -1,5 +1,6 @@
 import Paddle from './Paddle'
 import { player1Keys, player2Keys }  from "./keys"
+import Ball from './Ball'
 
 export default class Game {
 	constructor() {
@@ -8,10 +9,10 @@ export default class Game {
 		this.height = canvas.height;
 		this.context = canvas.getContext('2d');
 		this.context.fillStyle = 'white';
-
+		this.balls = new Ball(),
 		this.p1 = new Paddle(this.height, 5, 'white',player1Keys),
-		this.p2 = new Paddle(this.height, this.width-10, 'white', player2Keys),
-		console.log(player1Keys)
+		this.p2 = new Paddle(this.height, this.width-10, 'white', player2Keys)
+
 	}
 
 	drawLine(){
@@ -32,6 +33,7 @@ export default class Game {
 	render(){
 		// console.log('hope')
 		this.drawBoard();
+		this.balls.render(this.context, this.p1, this.p2);
 		this.p1.render(this.context);
 		this.p2.render(this.context);
 		
