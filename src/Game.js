@@ -13,13 +13,13 @@ export default class Game {
 		this.context = canvas.getContext('2d');
 		this.context.fillStyle = 'white';
 		this.balls = new Ball(this.height, this.width, 'white'),
-		this.balls2 = new Ball(this.height, this.width, 'green'),
-		this.balls6 = new Ball(this.height, this.width, 'lightblue'),
-		this.balls5 = new Ball(this.height, this.width, 'grey'),
-		this.balls7 = new Ball(this.height, this.width, 'red'),
-		this.balls8 = new Ball(this.height, this.width, 'pink'),
-		this.balls3 = new Ball(this.height, this.width, 'blue'),
-		this.balls4 = new Ball(this.height, this.width, 'purple'),
+		// this.balls2 = new Ball(this.height, this.width, 'green'),
+		// this.balls6 = new Ball(this.height, this.width, 'lightblue'),
+		// this.balls5 = new Ball(this.height, this.width, 'grey'),
+		// this.balls7 = new Ball(this.height, this.width, 'red'),
+		// this.balls8 = new Ball(this.height, this.width, 'pink'),
+		// this.balls3 = new Ball(this.height, this.width, 'blue'),
+		// this.balls4 = new Ball(this.height, this.width, 'purple'),
 		this.scoreboard = new Score(this.height,  this.width);
 		// ball  to players to score 
 		
@@ -53,12 +53,12 @@ export default class Game {
 		this.p1.render(this.context);
 		this.p2.render(this.context);
 		this.balls.render(this.context, this.p1, this.p2);
-		this.balls2.render(this.context, this.p1, this.p2);
-		this.balls3.render(this.context, this.p1, this.p2);
-		this.balls4.render(this.context, this.p1, this.p2);
-		this.balls5.render(this.context, this.p1, this.p2);
-		this.balls6.render(this.context, this.p1, this.p2);
-		this.balls7.render(this.context, this.p1, this.p2);
+		// this.balls2.render(this.context, this.p1, this.p2);
+		// this.balls3.render(this.context, this.p1, this.p2);
+		// this.balls4.render(this.context, this.p1, this.p2);
+		// this.balls5.render(this.context, this.p1, this.p2);
+		// this.balls6.render(this.context, this.p1, this.p2);
+		// this.balls7.render(this.context, this.p1, this.p2);
 		
 		this.scoreboard.render(this.context, this.p1, this.p2)
 	}
