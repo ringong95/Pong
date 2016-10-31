@@ -2,15 +2,16 @@
 
 export default class Paddle {
 	constructor(boardHeight, x, color, keys) {
-
-		this.speed = 5;
+		this.score = 0;
+		this.speed = 10;
 		this.keys = keys;
 		this.width = 5;
 		this.height = 60;
 		this.color = color
 		this.x = x;
 		this.y = (boardHeight / 2) - (this.height / 2);
-		console.log(this.keys)
+		this.boardHeight = boardHeight;
+
 
 		document.addEventListener('keydown', event => this.keyListener(event));
 	}
@@ -31,22 +32,22 @@ export default class Paddle {
 	}	
 
 	moveUp(){
-		if(this.y>= 5){
-			console.log("up")
+		if(this.y>= 0 + this.speed){
+
 			this.y -= this.speed
 		}
 	}
 	moveDown(){
-		if(this.y<= 85){
-			console.log('down')
+		if(this.y<= this.boardHeight-this.height-this.speed){
+
 			this.y += this.speed
 		}
 	}
-	render(context){
+	render(context)
+	{
 		context.fillStyle = this.color;
 		context.fillRect(
 			this.x, this.y,
 			this.width, this.height
-			);
+			);}
 	}
-}
