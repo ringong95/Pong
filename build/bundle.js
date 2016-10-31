@@ -111,7 +111,15 @@ var Game = function () {
 		this.height = canvas.height;
 		this.context = canvas.getContext('2d');
 		this.context.fillStyle = 'white';
-		this.balls = new _Ball2.default(this.height, this.width, 'white'), this.balls2 = new _Ball2.default(this.height, this.width, 'green'), this.balls6 = new _Ball2.default(this.height, this.width, 'lightblue'), this.balls5 = new _Ball2.default(this.height, this.width, 'grey'), this.balls7 = new _Ball2.default(this.height, this.width, 'red'), this.balls8 = new _Ball2.default(this.height, this.width, 'pink'), this.balls3 = new _Ball2.default(this.height, this.width, 'blue'), this.balls4 = new _Ball2.default(this.height, this.width, 'purple'), this.scoreboard = new _Score2.default(this.height, this.width);
+		this.balls = new _Ball2.default(this.height, this.width, 'white'),
+		// this.balls2 = new Ball(this.height, this.width, 'green'),
+		// this.balls6 = new Ball(this.height, this.width, 'lightblue'),
+		// this.balls5 = new Ball(this.height, this.width, 'grey'),
+		// this.balls7 = new Ball(this.height, this.width, 'red'),
+		// this.balls8 = new Ball(this.height, this.width, 'pink'),
+		// this.balls3 = new Ball(this.height, this.width, 'blue'),
+		// this.balls4 = new Ball(this.height, this.width, 'purple'),
+		this.scoreboard = new _Score2.default(this.height, this.width);
 		// ball  to players to score 
 
 
@@ -143,12 +151,12 @@ var Game = function () {
 			this.p1.render(this.context);
 			this.p2.render(this.context);
 			this.balls.render(this.context, this.p1, this.p2);
-			this.balls2.render(this.context, this.p1, this.p2);
-			this.balls3.render(this.context, this.p1, this.p2);
-			this.balls4.render(this.context, this.p1, this.p2);
-			this.balls5.render(this.context, this.p1, this.p2);
-			this.balls6.render(this.context, this.p1, this.p2);
-			this.balls7.render(this.context, this.p1, this.p2);
+			// this.balls2.render(this.context, this.p1, this.p2);
+			// this.balls3.render(this.context, this.p1, this.p2);
+			// this.balls4.render(this.context, this.p1, this.p2);
+			// this.balls5.render(this.context, this.p1, this.p2);
+			// this.balls6.render(this.context, this.p1, this.p2);
+			// this.balls7.render(this.context, this.p1, this.p2);
 
 			this.scoreboard.render(this.context, this.p1, this.p2);
 		}
@@ -267,7 +275,7 @@ var Ball = function () {
         this.y = this.boardHeight / 2;
         this.width = 10;
         this.height = 10;
-        this.radius = 25;
+        this.radius = 5;
         this.Yspeed = Math.floor(Math.random() * 12 - 6);
         this.Xspeed = 7 - Math.abs(this.Yspeed);
 
@@ -279,9 +287,9 @@ var Ball = function () {
         value: function paddleBounce(p1, p2) {
             // this.x-this.radius-p1.width = p1.x && 
             var p1RightEdge = this.x - this.radius - p1.width <= p1.x;
-            var p1LeftEdge = this.x - this.radius >= p1.x;
+            // const p1LeftEdge = (this.x-this.radius >= p1.x);
 
-            if (p1RightEdge && p1LeftEdge) {
+            if (p1RightEdge) {
                 if (this.y >= p1.y && this.y <= p1.height + p1.y) {
 
                     this.Yspeed = Math.floor(Math.random() * 12 - 6);

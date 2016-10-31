@@ -7,7 +7,7 @@ export default class Ball {
         this.y = this.boardHeight/2;
         this.width = 10
         this.height = 10
-        this.radius = 25
+        this.radius = 5
         this.Yspeed =  Math.floor(Math.random() * 12 - 6);
         this.Xspeed = (7 - Math.abs(this.Yspeed));
         
@@ -15,10 +15,10 @@ export default class Ball {
     }
     paddleBounce(p1, p2){
         // this.x-this.radius-p1.width = p1.x && 
-        const p1RightEdge = (this.x-this.radius-p1.width <= p1.x)
-        const p1LeftEdge = (this.x-this.radius >= p1.x);
+        const p1RightEdge = (this.x-this.radius-p1.width<= p1.x)
+        // const p1LeftEdge = (this.x-this.radius >= p1.x);
 
-        if (p1RightEdge && p1LeftEdge){
+        if (p1RightEdge){
             if (this.y >= p1.y && this.y <= (p1.height+p1.y)){
                     
                     this.Yspeed =  Math.floor(Math.random() * 12 - 6);
