@@ -7,24 +7,13 @@ export default class Game {
 	constructor() {
 		const canvas = document.getElementById('game');
 
-
 		this.width = canvas.width;
 		this.height = canvas.height;
 		this.context = canvas.getContext('2d');
 		this.context.fillStyle = 'white';
 		this.balls = new Ball(this.height, this.width, 'white'),
-		// this.balls2 = new Ball(this.height, this.width, 'green'),
-		// this.balls6 = new Ball(this.height, this.width, 'lightblue'),
-		// this.balls5 = new Ball(this.height, this.width, 'grey'),
-		// this.balls7 = new Ball(this.height, this.width, 'red'),
-		// this.balls8 = new Ball(this.height, this.width, 'pink'),
-		// this.balls3 = new Ball(this.height, this.width, 'blue'),
-		// this.balls4 = new Ball(this.height, this.width, 'purple'),
 		this.scoreboard = new Score(this.height,  this.width);
-		// ball  to players to score 
-		
-		
-
+		// ball  to players to score
 		this.p1 = new Paddle(this.height, 5, 'white',player1Keys),
 		this.p2 = new Paddle(this.height, this.width-10, 'white', player2Keys)
 
@@ -47,9 +36,6 @@ export default class Game {
 
 	render(){
 		this.drawBoard();
-		
-
-		
 		this.p1.render(this.context);
 		this.p2.render(this.context);
 		this.balls.render(this.context, this.p1, this.p2);

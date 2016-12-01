@@ -61,7 +61,7 @@
 /******/ 	__webpack_require__.p = "";
 
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 14);
+/******/ 	return __webpack_require__(__webpack_require__.s = 2);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -83,17 +83,17 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _Paddle = __webpack_require__(5);
+var _Paddle = __webpack_require__(6);
 
 var _Paddle2 = _interopRequireDefault(_Paddle);
 
-var _keys = __webpack_require__(7);
+var _keys = __webpack_require__(8);
 
-var _Ball = __webpack_require__(4);
+var _Ball = __webpack_require__(5);
 
 var _Ball2 = _interopRequireDefault(_Ball);
 
-var _Score = __webpack_require__(6);
+var _Score = __webpack_require__(7);
 
 var _Score2 = _interopRequireDefault(_Score);
 
@@ -111,18 +111,8 @@ var Game = function () {
 		this.height = canvas.height;
 		this.context = canvas.getContext('2d');
 		this.context.fillStyle = 'white';
-		this.balls = new _Ball2.default(this.height, this.width, 'white'),
-		// this.balls2 = new Ball(this.height, this.width, 'green'),
-		// this.balls6 = new Ball(this.height, this.width, 'lightblue'),
-		// this.balls5 = new Ball(this.height, this.width, 'grey'),
-		// this.balls7 = new Ball(this.height, this.width, 'red'),
-		// this.balls8 = new Ball(this.height, this.width, 'pink'),
-		// this.balls3 = new Ball(this.height, this.width, 'blue'),
-		// this.balls4 = new Ball(this.height, this.width, 'purple'),
-		this.scoreboard = new _Score2.default(this.height, this.width);
-		// ball  to players to score 
-
-
+		this.balls = new _Ball2.default(this.height, this.width, 'white'), this.scoreboard = new _Score2.default(this.height, this.width);
+		// ball  to players to score
 		this.p1 = new _Paddle2.default(this.height, 5, 'white', _keys.player1Keys), this.p2 = new _Paddle2.default(this.height, this.width - 10, 'white', _keys.player2Keys);
 	}
 
@@ -147,7 +137,6 @@ var Game = function () {
 		key: 'render',
 		value: function render() {
 			this.drawBoard();
-
 			this.p1.render(this.context);
 			this.p2.render(this.context);
 			this.balls.render(this.context, this.p1, this.p2);
@@ -171,13 +160,37 @@ exports.default = Game;
 /* 2 */
 /***/ function(module, exports, __webpack_require__) {
 
+"use strict";
+'use strict';
+
+__webpack_require__(3);
+
+var _Game = __webpack_require__(1);
+
+var _Game2 = _interopRequireDefault(_Game);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var game = new _Game2.default();
+
+var fps = 30;
+
+(function gameLoop() {
+	game.render();
+	setTimeout(gameLoop, fps);
+})();
+
+/***/ },
+/* 3 */
+/***/ function(module, exports, __webpack_require__) {
+
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(8);
+var content = __webpack_require__(9);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // add the styles to the DOM
-var update = __webpack_require__(13)(content, {});
+var update = __webpack_require__(14)(content, {});
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -194,7 +207,7 @@ if(false) {
 }
 
 /***/ },
-/* 3 */
+/* 4 */
 /***/ function(module, exports) {
 
 "use strict";
@@ -250,7 +263,7 @@ module.exports = function () {
 };
 
 /***/ },
-/* 4 */
+/* 5 */
 /***/ function(module, exports) {
 
 "use strict";
@@ -285,15 +298,17 @@ var Ball = function () {
     _createClass(Ball, [{
         key: 'paddleBounce',
         value: function paddleBounce(p1, p2) {
-            // this.x-this.radius-p1.width = p1.x && 
+            // this is to create collision with the right edge of the p1 paddle
             var p1RightEdge = this.x - this.radius - p1.width <= p1.x;
-            // const p1LeftEdge = (this.x-this.radius >= p1.x);
 
             if (p1RightEdge) {
+                // this is if the paddle is in the Y values of the paddle.
                 if (this.y >= p1.y && this.y <= p1.height + p1.y) {
 
                     this.Yspeed = Math.floor(Math.random() * 12 - 6);
+                    // This is to reflect the balls speed so it would "bounce"
                     this.Xspeed *= -1;
+                    // this plays the sound established somewhere else
                     this.sound();
                 }
             }
@@ -366,7 +381,7 @@ var Ball = function () {
 exports.default = Ball;
 
 /***/ },
-/* 5 */
+/* 6 */
 /***/ function(module, exports) {
 
 "use strict";
@@ -448,7 +463,7 @@ var Paddle = function () {
 exports.default = Paddle;
 
 /***/ },
-/* 6 */
+/* 7 */
 /***/ function(module, exports) {
 
 "use strict";
@@ -515,7 +530,7 @@ var Score = function () {
 exports.default = Score;
 
 /***/ },
-/* 7 */
+/* 8 */
 /***/ function(module, exports) {
 
 "use strict";
@@ -534,45 +549,45 @@ var player2Keys = exports.player2Keys = {
 };
 
 /***/ },
-/* 8 */
+/* 9 */
 /***/ function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(3)();
+exports = module.exports = __webpack_require__(4)();
 // imports
 
 
 // module
-exports.push([module.i, "/* http://meyerweb.com/eric/tools/css/reset/\n   v2.0 | 20110126\n   License: none (public domain)\n*/\n\nhtml, body, div, span, applet, object, iframe,\nh1, h2, h3, h4, h5, h6, p, blockquote, pre,\na, abbr, acronym, address, big, cite, code,\ndel, dfn, em, img, ins, kbd, q, s, samp,\nsmall, strike, strong, sub, sup, tt, var,\nb, u, i, center,\ndl, dt, dd, ol, ul, li,\nfieldset, form, label, legend,\ntable, caption, tbody, tfoot, thead, tr, th, td,\narticle, aside, canvas, details, embed,\nfigure, figcaption, footer, header, hgroup,\nmenu, nav, output, ruby, section, summary,\ntime, mark, audio, video {\n   margin: 0;\n   padding: 0;\n   border: 0;\n   font-size: 100%;\n   font: inherit;\n   vertical-align: baseline;\n}\n/* HTML5 display-role reset for older browsers */\narticle, aside, details, figcaption, figure,\nfooter, header, hgroup, menu, nav, section {\n   display: block;\n}\nbody {\n   line-height: 1;\n}\nol, ul {\n   list-style: none;\n}\nblockquote, q {\n   quotes: none;\n}\nblockquote:before, blockquote:after,\nq:before, q:after {\n   content: '';\n   content: none;\n}\ntable {\n   border-collapse: collapse;\n   border-spacing: 0;\n}\n\n/* Game Styles */\n\n@font-face {\n    font-family: 'PressStart2P Web';\n    src: url(" + __webpack_require__(0) + ");\n    src: url(" + __webpack_require__(0) + "?#iefix) format('embedded-opentype'),\n         url(" + __webpack_require__(12) + ") format('woff2'),\n         url(" + __webpack_require__(11) + ") format('woff'),\n         url(" + __webpack_require__(10) + ") format('truetype'),\n         url(" + __webpack_require__(9) + "#press_start_2pregular) format('svg');\n    font-weight: normal;\n    font-style: normal;\n}\nbody {\n   font-family: 'PressStart2P Web', monospace;\n   margin: 0 auto;\n   text-align: center;\n}\nh1 {\n   margin-top: 20px;\n}\n#game {\n   background-color: black;\n   display: block;\n   height: 256px;\n   margin: 20px auto;\n   width: 512px;\n}\n.players {\n   display: inline-flex;\n   justify-content: space-between;\n   text-align: center;\n   width: 512px;\n}\n", ""]);
+exports.push([module.i, "/* http://meyerweb.com/eric/tools/css/reset/\n   v2.0 | 20110126\n   License: none (public domain)\n*/\n\nhtml, body, div, span, applet, object, iframe,\nh1, h2, h3, h4, h5, h6, p, blockquote, pre,\na, abbr, acronym, address, big, cite, code,\ndel, dfn, em, img, ins, kbd, q, s, samp,\nsmall, strike, strong, sub, sup, tt, var,\nb, u, i, center,\ndl, dt, dd, ol, ul, li,\nfieldset, form, label, legend,\ntable, caption, tbody, tfoot, thead, tr, th, td,\narticle, aside, canvas, details, embed,\nfigure, figcaption, footer, header, hgroup,\nmenu, nav, output, ruby, section, summary,\ntime, mark, audio, video {\n   margin: 0;\n   padding: 0;\n   border: 0;\n   font-size: 100%;\n   font: inherit;\n   vertical-align: baseline;\n}\n/* HTML5 display-role reset for older browsers */\narticle, aside, details, figcaption, figure,\nfooter, header, hgroup, menu, nav, section {\n   display: block;\n}\nbody {\n   line-height: 1;\n}\nol, ul {\n   list-style: none;\n}\nblockquote, q {\n   quotes: none;\n}\nblockquote:before, blockquote:after,\nq:before, q:after {\n   content: '';\n   content: none;\n}\ntable {\n   border-collapse: collapse;\n   border-spacing: 0;\n}\n\n/* Game Styles */\n\n@font-face {\n  font-family:;\n  src:url(" + __webpack_require__(2) + ");\n}font-face {\n    font-family: 'PressStart2P Web';\n    src: url(" + __webpack_require__(0) + ");\n    src: url(" + __webpack_require__(0) + "?#iefix) format('embedded-opentype'),\n         url(" + __webpack_require__(13) + ") format('woff2'),\n         url(" + __webpack_require__(12) + ") format('woff'),\n         url(" + __webpack_require__(11) + ") format('truetype'),\n         url(" + __webpack_require__(10) + "#press_start_2pregular) format('svg');\n    font-weight: normal;\n    font-style: normal;\n}\nbody {\n   font-family: 'PressStart2P Web', monospace;\n   margin: 0 auto;\n   text-align: center;\n}\nh1 {\n   margin-top: 20px;\n}\n#game {\n   background-color: black;\n   display: block;\n   height: 256px;\n   margin: 20px auto;\n   width: 512px;\n}\n.players {\n   display: inline-flex;\n   justify-content: space-between;\n   text-align: center;\n   width: 512px;\n}\n", ""]);
 
 // exports
 
 
 /***/ },
-/* 9 */
+/* 10 */
 /***/ function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "public/fonts/pressstart2p-webfont.svg";
 
 /***/ },
-/* 10 */
+/* 11 */
 /***/ function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "public/fonts/pressstart2p-webfont.ttf";
 
 /***/ },
-/* 11 */
+/* 12 */
 /***/ function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "public/fonts/pressstart2p-webfont.woff";
 
 /***/ },
-/* 12 */
+/* 13 */
 /***/ function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "public/fonts/pressstart2p-webfont.woff2";
 
 /***/ },
-/* 13 */
+/* 14 */
 /***/ function(module, exports) {
 
 /*
@@ -822,30 +837,6 @@ function updateLink(linkElement, obj) {
 		URL.revokeObjectURL(oldSrc);
 }
 
-
-/***/ },
-/* 14 */
-/***/ function(module, exports, __webpack_require__) {
-
-"use strict";
-'use strict';
-
-__webpack_require__(2);
-
-var _Game = __webpack_require__(1);
-
-var _Game2 = _interopRequireDefault(_Game);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var game = new _Game2.default();
-
-var fps = 30;
-
-(function gameLoop() {
-	game.render();
-	setTimeout(gameLoop, fps);
-})();
 
 /***/ }
 /******/ ]);

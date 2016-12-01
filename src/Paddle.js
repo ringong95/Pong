@@ -12,7 +12,6 @@ export default class Paddle {
 		this.y = (boardHeight / 2) - (this.height / 2);
 		this.boardHeight = boardHeight;
 
-
 		document.addEventListener('keydown', event => this.keyListener(event));
 	}
 
