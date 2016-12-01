@@ -1,25 +1,16 @@
 # Pong Game
 
-A basic pong game using HTML5 Canvas.
+A basic pong game using HTML5 Canvas and JavaScript
 
-## Setup
+## Summary
 
-##### Install
+For this project we used Object oriented programming to build a pong game and Html5 Canvas to render it
 
-`> npm i`
+##### Languages and tools used:
 
-##### Run
+Javascript
+HTML5
 
-`> npm start`
+## What did I learn?
 
-## Keys
-
-##### Player 1:
-* a: up
-* z: down
-* q: fire a new ball
-
-##### Player 2:
-* ▲ : up
-* ▼: down
-* /: fire a new ball
+I learned how to how to convert rules of a game into programming step by step into classes.
